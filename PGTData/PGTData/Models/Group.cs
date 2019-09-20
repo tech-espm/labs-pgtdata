@@ -10,5 +10,6 @@ namespace PGTData.Models
         public int GroupID { get; set; }
         public string GroupName { get; set; }
 
+        public List<Student> Students { get; set; }
     }
 }
