@@ -34,7 +34,7 @@ namespace PGTData
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Title = "PGTData",
+                    Title = "PGT Data",
                     Version = "1.0",
                     Description = "Api centralizada de gestao de dados do PGT Management",
                 });
@@ -42,7 +42,7 @@ namespace PGTData
             });
 
             services.AddDbContext<DBPGTContext>(options =>
-            options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+           options.UseInMemoryDatabase(databaseName: "PGT"));
 
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 
@@ -63,14 +63,15 @@ namespace PGTData
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseMvc();
 
+            app.UseSwagger();   
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "PGT Data");
             });
 
-            app.UseHttpsRedirection();
-            app.UseMvc();
+            //app.UseHttpsRedirection();
         }
     }
 }

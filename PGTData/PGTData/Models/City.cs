@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,5 +14,6 @@ namespace PGTData.Models
         [Column("StateID")]
         public int StateID { get; set; }
         public State State { get; set; }
+        
     }
 }
