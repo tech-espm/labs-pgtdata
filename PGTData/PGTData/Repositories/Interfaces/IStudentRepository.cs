@@ -8,6 +8,6 @@ namespace PGTData.Repositories.Interfaces
 {
     public interface IStudentRepository : IRepository<Student>
     {
-
+        List<Student> GetByGroup(int GroupID);
     }
 }

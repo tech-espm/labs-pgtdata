@@ -43,6 +43,48 @@ namespace PGTData.Controllers
             }
         }
 
+        [HttpGet("{GroupID}")]
+        public IActionResult GetByGroup(int GroupID)
+        {
+            try
+            {
+
+                var obj = _unitOfWork.Student.GetByGroup(GroupID);
+
+                if (obj == null)
+                {
+                    return new ErrorResult("Students Not Found");
+                }
+
+                return new MyOkResult(obj.Select(x => (StudentResult)x).ToList());
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
+        [HttpGet("{CampusID}")]
+        public IActionResult GetByCampus(int CampusID)
+        {
+            try
+            {
+
+                var obj = _unitOfWork.Student.Find(x => x.CampusID == CampusID);
+
+                if (obj == null)
+                {
+                    return new ErrorResult("Students Not Found");
+                }
+
+                return new MyOkResult(obj.Select(x => (StudentResult)x).ToList());
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(StudentRequest req)
         {
@@ -53,16 +95,12 @@ namespace PGTData.Controllers
                     return new ErrorResult();
                 }
 
-                Group group = _unitOfWork.Group.Get(req.GroupID);
-
                 Student student = new Student
                 {
                     StudentName = req.StudentName,
                     StudentRA = req.StudentRA,
-                    GroupID = req.GroupID
+                    CampusID = req.CampusID
                 };
-
-                student.Group = group;
 
                 _unitOfWork.Student.Add(student);
                 await _unitOfWork.Complete();

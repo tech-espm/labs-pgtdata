@@ -10,5 +10,6 @@ namespace PGTData.Requests
         public string StudentName { get; set; }
         public int StudentRA { get; set; }
         public int GroupID { get; set; }
+        public int CampusID { get; set; }
     }
 }

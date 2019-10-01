@@ -1,6 +1,8 @@
-﻿using PGTData.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PGTData.Context;
 using PGTData.Models;
 using PGTData.Repositories.Interfaces;
+using System.Collections.Generic;
 
 namespace PGTData.Repositories
 {

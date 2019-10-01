@@ -1,4 +1,5 @@
-﻿using PGTData.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PGTData.Context;
 using PGTData.Models;
 using PGTData.Repositories.Interfaces;
 using System;
@@ -13,6 +14,15 @@ namespace PGTData.Repositories
         public StudentRepository(DBPGTContext context) : base(context)
         {
 
+        }
+
+        public List<Student> GetByGroup (int GroupID)
+        {
+            var queryfilter = _entities.Include(x => x.Group)
+                .Where(x => x.GroupID == GroupID)
+                .AsNoTracking();
+
+            return queryfilter.ToList();
         }
     }
 }

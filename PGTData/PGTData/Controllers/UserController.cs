@@ -44,6 +44,48 @@ namespace PGTData.Controllers
             }
         }
 
+        [HttpGet("{GroupID}")]
+        public IActionResult GetByGroup(int GroupID)
+        {
+            try
+            {
+
+                var obj = _unitOfWork.User.Find(x => x.UserType.GroupID == GroupID);
+
+                if (obj == null)
+                {
+                    return new ErrorResult("Users Not Found");
+                }
+
+                return new MyOkResult(obj.Select(x => (UserResult)x).ToList());
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
+        [HttpGet("{CampusID}")]
+        public IActionResult GetByCampus(int CampusID)
+        {
+            try
+            {
+
+                var obj = _unitOfWork.User.Find(x => x.CampusID == CampusID);
+
+                if (obj == null)
+                {
+                    return new ErrorResult("Users Not Found");
+                }
+
+                return new MyOkResult(obj.Select(x => (UserResult)x).ToList());
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(UserRequest req)
         {

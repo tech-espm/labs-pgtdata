@@ -11,6 +11,7 @@ namespace PGTData.Models
         public int StudentID { get; set; }
         public string StudentName { get; set; }
         public int StudentRA { get; set; }
+        public int CampusID { get; set; }
 
         [Column("GroupID")]
         public int GroupID { get; set; }
