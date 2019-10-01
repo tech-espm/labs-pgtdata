@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using PGTData.Commom.CustomResults;
 using PGTData.Models;
 using PGTData.Repositories;
@@ -14,29 +13,29 @@ using PGTData.Results;
 namespace PGTData.Controllers
 {
     [Route("api/[controller]")]
-    public class UserController : Controller
+    public class StudentController : Controller
     {
         private readonly UnitOfWork _unitOfWork;
 
-        public UserController(IUnitOfWork unitOfWork)
+        public StudentController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = (UnitOfWork)unitOfWork;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(int StudentID)
         {
             try
             {
-                
-                var obj = _unitOfWork.User.GetAll();
+
+                var obj = _unitOfWork.Student.Get(StudentID);
 
                 if (obj == null)
                 {
-                    return new ErrorResult("User Not Found");
+                    return new ErrorResult("Student Not Found");
                 }
 
-                return new MyOkResult((UserResult)obj);
+                return new MyOkResult((StudentResult)obj);
             }
             catch (Exception ex)
             {
@@ -45,7 +44,7 @@ namespace PGTData.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(UserRequest req)
+        public async Task<IActionResult> Post(StudentRequest req)
         {
             try
             {
@@ -54,24 +53,21 @@ namespace PGTData.Controllers
                     return new ErrorResult();
                 }
 
-                UserType userType = _unitOfWork.UserType.Get(req.UserTypeID);
+                Group group = _unitOfWork.Group.Get(req.GroupID);
 
-                User user = new User
+                Student student = new Student
                 {
-                    UserName = req.UserName,
-                    UserRegister = req.UserRegister,
-                    UserEmail = req.UserEmail,
-                    UserPassword = req.UserPassword,
-                    UserTypeID = req.UserTypeID,
-                    CampusID = req.CampusID
+                    StudentName = req.StudentName,
+                    StudentRA = req.StudentRA,
+                    GroupID = req.GroupID
                 };
 
-                user.UserType = userType;
+                student.Group = group;
 
-                _unitOfWork.User.Add(user);
+                _unitOfWork.Student.Add(student);
                 await _unitOfWork.Complete();
 
-                return new MyOkResult((UserResult)user);
+                return new MyOkResult((StudentResult)student);
 
             }
             catch (Exception ex)

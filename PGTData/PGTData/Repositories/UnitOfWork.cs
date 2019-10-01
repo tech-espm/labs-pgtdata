@@ -16,9 +16,22 @@ namespace PGTData.Repositories
             _context = context;
 
             User = new UserRepository(_context);
+            UserType = new UserTypeRepository(_context);
+            Campus = new CampusRepository(_context);
+            City = new CityRepository(_context);
+            Group = new GroupRepository(_context);
+            State = new StateRepository(_context);
+            Student = new StudentRepository(_context);
+
         }
 
         public IUserRepository User { get; private set; }
+        public IUserTypeRepository UserType { get; private set; }
+        public ICampusRepository Campus { get; private set; }
+        public ICityRepository City { get; private set; }
+        public IGroupRepository Group { get; private set; }
+        public IStateRepository State { get; private set; }
+        public IStudentRepository Student { get; private set; }
 
         public async Task<int> Complete()
         {
