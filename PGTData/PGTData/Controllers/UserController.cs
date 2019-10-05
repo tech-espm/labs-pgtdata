@@ -86,6 +86,62 @@ namespace PGTData.Controllers
             }
         }
 
+        [HttpGet("Wanings")]
+        public IActionResult GetWarnings(int UserID)
+        {
+            try
+            {
+
+                var obj = _unitOfWork.User.Get(UserID);
+
+                if (obj == null)
+                {
+                    return new ErrorResult("User Not Found");
+                }
+
+                List<WarningResult> warnings = new List<WarningResult>();
+
+                foreach (var item in obj.Warnings)
+                {
+                    warnings.Add((WarningResult)item);
+                }
+
+                return new MyOkResult(warnings);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
+        [HttpGet("Reviews")]
+        public IActionResult GetReviews(int UserID)
+        {
+            try
+            {
+
+                var obj = _unitOfWork.User.Get(UserID);
+
+                if (obj == null)
+                {
+                    return new ErrorResult("User Not Found");
+                }
+
+                List<ReviewResult> reviews = new List<ReviewResult>();
+
+                foreach (var item in obj.Reviews)
+                {
+                    reviews.Add((ReviewResult)item);
+                }
+
+                return new MyOkResult(reviews);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(UserRequest req)
         {
