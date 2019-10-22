@@ -19,6 +19,10 @@ namespace PGTData.Models
         public int UserTypeID { get; set; }
         public UserType UserType { get; set; }
 
+        [Column("GroupID")]
+        public int GroupID { get; set; }
+        public Group Group { get; set; }
+
         public List<Warning> Warnings { get; set; }
         
         public List<Review> Reviews { get; set; }

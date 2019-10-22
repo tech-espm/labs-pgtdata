@@ -26,11 +26,6 @@ namespace PGTData.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<User>()
-                .HasOne(x => x.UserType)
-                .WithOne(y => y.User)
-                .OnDelete(DeleteBehavior.Restrict);
             
         }
     }
