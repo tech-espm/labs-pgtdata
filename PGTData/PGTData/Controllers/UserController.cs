@@ -36,7 +36,7 @@ namespace PGTData.Controllers
                     return new ErrorResult("User Not Found");
                 }
 
-                return new MyOkResult((UserResult)obj);
+                return new MyOkResult(obj.Select(x => (UserResult)x).ToList());
             }
             catch (Exception ex)
             {
@@ -50,7 +50,7 @@ namespace PGTData.Controllers
             try
             {
 
-                var obj = _unitOfWork.User.Find(x => x.UserType.GroupID == GroupID);
+                var obj = _unitOfWork.User.Find(x => x.GroupID == GroupID);
 
                 if (obj == null)
                 {

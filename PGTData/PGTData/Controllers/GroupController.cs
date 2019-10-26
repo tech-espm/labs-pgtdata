@@ -59,10 +59,10 @@ namespace PGTData.Controllers
                     students.Add(_unitOfWork.Student.Get(student.StudentID));
                 }
 
-                List<UserType> users = new List<UserType>();
-                foreach (var user in req.UserTypes)
+                List<User> users = new List<User>();
+                foreach (var user in req.Users)
                 {
-                    users.Add(_unitOfWork.UserType.Get(user.UserID));
+                    users.Add(_unitOfWork.User.Get(user.UserID));
                 }
 
                 Group group = new Group
@@ -86,7 +86,7 @@ namespace PGTData.Controllers
                 {
                     user.GroupID = group.GroupID;
                     user.Group = group;
-                    _unitOfWork.UserType.Add(user);
+                    _unitOfWork.User.Update(user);
                     await _unitOfWork.Complete();
                 }
 

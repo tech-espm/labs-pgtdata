@@ -8,13 +8,7 @@ namespace PGTData.Models
 {
     public class UserType
     {
-        [Column("UserID")]
-        public int UserID { get; set; }
-        public User User { get; set; }
-
-        [Column("GroupID")]
-        public int GroupID { get; set; }
-        public Group Group { get; set; }
+        public int UserTypeID { get; set; }
 
         public string UserTypeDescription { get; set; }
     }

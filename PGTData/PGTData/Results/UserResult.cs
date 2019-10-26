@@ -15,6 +15,7 @@ namespace PGTData.Results
         public string UserPassword { get; set; }
         public int CampusID { get; set; }
         public int UserTypeID { get; set; }
+        public int GroupID { get; set; }
 
         public List<Warning> Warnings { get; set; }
 
@@ -30,7 +31,8 @@ namespace PGTData.Results
                 UserEmail = obj.UserEmail,
                 UserPassword = obj.UserPassword,
                 CampusID = obj.CampusID,
-                UserTypeID = obj.UserTypeID
+                UserTypeID = obj.UserTypeID,
+                GroupID = obj.GroupID
             };
 
             if (obj.Warnings != null)
