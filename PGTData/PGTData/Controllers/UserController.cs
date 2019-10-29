@@ -143,7 +143,7 @@ namespace PGTData.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(UserRequest req)
+        public async Task<IActionResult> Post([FromBody]UserRequest req)
         {
             try
             {
