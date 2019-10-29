@@ -16,7 +16,7 @@ namespace PGTData.Results
         public string ReviewAccording { get; set; }
 
         public DateTime ReviewDate { get; set; }
-        
+
         public int FileID { get; set; }
 
         public int ReviewTypeID { get; set; }

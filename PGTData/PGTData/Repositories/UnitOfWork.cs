@@ -22,6 +22,9 @@ namespace PGTData.Repositories
             Group = new GroupRepository(_context);
             State = new StateRepository(_context);
             Student = new StudentRepository(_context);
+            Review = new ReviewRepository(_context);
+            File = new FileRepository(_context);
+            Comment = new CommentRepository(_context);
 
         }
 
@@ -32,6 +35,9 @@ namespace PGTData.Repositories
         public IGroupRepository Group { get; private set; }
         public IStateRepository State { get; private set; }
         public IStudentRepository Student { get; private set; }
+        public IReviewRepository Review { get; private set; }
+        public IFileRepository File { get; private set; }
+        public ICommentRepository Comment { get; private set; }
 
         public async Task<int> Complete()
         {
