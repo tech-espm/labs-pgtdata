@@ -42,7 +42,7 @@ namespace PGTData
             });
 
             services.AddDbContext<DBPGTContext>(options =>
-           options.UseInMemoryDatabase(databaseName: "PGT"));
+           options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 
