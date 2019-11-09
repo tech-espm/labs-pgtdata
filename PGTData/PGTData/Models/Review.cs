@@ -25,5 +25,8 @@ namespace PGTData.Models
         public int ReviewTypeID { get; set; }
         public ReviewType ReviewType { get; set; }
 
+        [Column("UserID")]
+        public int UserID { get; set; }
+        public User User { get; set; }
     }
 }

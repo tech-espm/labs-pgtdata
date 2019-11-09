@@ -22,9 +22,6 @@ namespace PGTData.Models
         [Column("GroupID")]
         public int GroupID { get; set; }
         public Group Group { get; set; }
-
-        public List<Warning> Warnings { get; set; }
         
-        public List<Review> Reviews { get; set; }
     }
 }

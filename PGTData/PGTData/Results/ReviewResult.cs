@@ -21,6 +21,8 @@ namespace PGTData.Results
 
         public int ReviewTypeID { get; set; }
 
+        public int UserID { get; set; }
+
         public static explicit operator ReviewResult(Review obj)
         {
             ReviewResult convertedObject = new ReviewResult
@@ -33,7 +35,8 @@ namespace PGTData.Results
                 ReviewAccording = obj.ReviewAccording,
                 ReviewDate = obj.ReviewDate,
                 FileID = obj.FileID,
-                ReviewTypeID = obj.ReviewTypeID
+                ReviewTypeID = obj.ReviewTypeID,
+                UserID = obj.UserID
             };
 
             return convertedObject;

@@ -12,5 +12,8 @@ namespace PGTData.Models
         public string WarningDescription { get; set; }
         public DateTime WarningDate { get; set; }
         
+        [Column("UserID")]
+        public int UserID { get; set; }
+        public User User { get; set; }
     }
 }
