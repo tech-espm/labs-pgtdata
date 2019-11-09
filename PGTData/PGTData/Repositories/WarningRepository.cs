@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace PGTData.Repositories
 {
-    public class ReviewRepository : Repository<Review>, IReviewRepository
+    public class WarningRepository : Repository<Warning>, IWarningRepository
     {
-        public ReviewRepository(DBPGTContext context) : base(context)
+        public WarningRepository(DBPGTContext context) : base(context)
         {
 
         }
 
-        public List<Review> GetByUser(int UserID)
+        public List<Warning> GetByUser(int UserID)
         {
             var queryfilter = _entities.Include(x => x.User)
                 .Where(x => x.UserID == UserID)

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PGTData.Repositories.Interfaces
 {
-    public interface IReviewRepository : IRepository<Review>
+    public interface IWarningRepository : IRepository<Warning>
     {
-        List<Review> GetByUser(int UserID);
+        List<Warning> GetByUser(int UserID);
     }
 }

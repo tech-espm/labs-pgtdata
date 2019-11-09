@@ -17,10 +17,6 @@ namespace PGTData.Results
         public int UserTypeID { get; set; }
         public int GroupID { get; set; }
 
-        public List<Warning> Warnings { get; set; }
-
-        public List<Review> Reviews { get; set; }
-
         public static explicit operator UserResult(User obj)
         {
             UserResult convertedObject = new UserResult
@@ -34,15 +30,6 @@ namespace PGTData.Results
                 UserTypeID = obj.UserTypeID,
                 GroupID = obj.GroupID
             };
-
-            if (obj.Warnings != null)
-            {
-                convertedObject.Warnings = obj.Warnings;
-            }
-            if (obj.Reviews != null)
-            {
-                convertedObject.Reviews = obj.Reviews;
-            }
 
             return convertedObject;
         }

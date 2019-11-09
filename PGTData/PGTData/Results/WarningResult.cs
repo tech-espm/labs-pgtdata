@@ -11,6 +11,7 @@ namespace PGTData.Results
         public int WarningID { get; set; }
         public string WarningDescription { get; set; }
         public DateTime WarningDate { get; set; }
+        public int UserID { get; set; }
 
         public static explicit operator WarningResult(Warning obj)
         {
@@ -18,7 +19,8 @@ namespace PGTData.Results
             {
                 WarningID = obj.WarningID,
                 WarningDescription = obj.WarningDescription,
-                WarningDate = obj.WarningDate
+                WarningDate = obj.WarningDate,
+                UserID = obj.UserID
             };
 
             return convertedObject;

@@ -92,7 +92,7 @@ namespace PGTData.Controllers
             try
             {
 
-                var obj = _unitOfWork.User.Get(UserID);
+                var obj = _unitOfWork.Warning.GetByUser(UserID);
 
                 if (obj == null)
                 {
@@ -101,7 +101,7 @@ namespace PGTData.Controllers
 
                 List<WarningResult> warnings = new List<WarningResult>();
 
-                foreach (var item in obj.Warnings)
+                foreach (var item in obj)
                 {
                     warnings.Add((WarningResult)item);
                 }
@@ -120,7 +120,7 @@ namespace PGTData.Controllers
             try
             {
 
-                var obj = _unitOfWork.User.Get(UserID);
+                var obj = _unitOfWork.Review.GetByUser(UserID);
 
                 if (obj == null)
                 {
@@ -129,7 +129,7 @@ namespace PGTData.Controllers
 
                 List<ReviewResult> reviews = new List<ReviewResult>();
 
-                foreach (var item in obj.Reviews)
+                foreach (var item in obj)
                 {
                     reviews.Add((ReviewResult)item);
                 }

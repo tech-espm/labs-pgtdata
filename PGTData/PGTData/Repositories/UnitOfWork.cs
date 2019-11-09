@@ -25,6 +25,7 @@ namespace PGTData.Repositories
             Review = new ReviewRepository(_context);
             File = new FileRepository(_context);
             Comment = new CommentRepository(_context);
+            Warning = new WarningRepository(_context);
 
         }
 
@@ -38,6 +39,7 @@ namespace PGTData.Repositories
         public IReviewRepository Review { get; private set; }
         public IFileRepository File { get; private set; }
         public ICommentRepository Comment { get; private set; }
+        public IWarningRepository Warning { get; private set; }
 
         public async Task<int> Complete()
         {
