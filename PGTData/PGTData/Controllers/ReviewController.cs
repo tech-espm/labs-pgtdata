@@ -43,6 +43,58 @@ namespace PGTData.Controllers
             }
         }
 
+        [HttpGet("Historic")]
+        public IActionResult GetHistoric(string StartDate, string EndDate)
+        {
+            try
+            {
+                List<HistoricResult> historic = new List<HistoricResult>();
+
+                var reviews = _unitOfWork.Review.GetHistoric(StartDate, EndDate);
+
+                if (reviews == null)
+                {
+                    return new ErrorResult("Review Not Found");
+                }
+
+                foreach (var item in reviews)
+                {
+                    var user = _unitOfWork.User.Get(item.UserID);
+                    var group = _unitOfWork.Group.Get(user.GroupID);
+
+                    historic.Add(new HistoricResult
+                    {
+                        GroupID = group.GroupID,
+                        GroupName = group.GroupName,
+                        ReviewID = item.ReviewID,
+                        Grade = item.ReviewAccording + item.ReviewContent + item.ReviewMemorial + item.ReviewRelevance + item.ReviewResearch,
+                        Date = item.ReviewDate
+                    });
+                };
+
+                return new MyOkResult(historic);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
+        [HttpGet("Report")]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                var reviews = _unitOfWork.Review.GetAll();
+
+                return new MyOkResult(reviews);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(ReviewRequest req)
         {

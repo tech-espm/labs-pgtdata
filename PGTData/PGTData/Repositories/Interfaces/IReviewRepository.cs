@@ -9,5 +9,6 @@ namespace PGTData.Repositories.Interfaces
     public interface IReviewRepository : IRepository<Review>
     {
         List<Review> GetByUser(int UserID);
+        List<Review> GetHistoric(string StartDate, string EndDate);
     }
 }

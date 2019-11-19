@@ -9,11 +9,11 @@ namespace PGTData.Results
     public class ReviewResult
     {
         public int ReviewID { get; set; }
-        public string ReviewContent { get; set; }
-        public string ReviewRelevance { get; set; }
-        public string ReviewResearch { get; set; }
-        public string ReviewMemorial { get; set; }
-        public string ReviewAccording { get; set; }
+        public int ReviewContent { get; set; }
+        public int ReviewRelevance { get; set; }
+        public int ReviewResearch { get; set; }
+        public int ReviewMemorial { get; set; }
+        public int ReviewAccording { get; set; }
 
         public DateTime ReviewDate { get; set; }
 
