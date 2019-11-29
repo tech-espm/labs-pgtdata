@@ -22,7 +22,7 @@ namespace PGTData.Controllers
             _unitOfWork = (UnitOfWork)unitOfWork;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(int StudentID)
         {
             try
@@ -36,6 +36,27 @@ namespace PGTData.Controllers
                 }
 
                 return new MyOkResult((StudentResult)obj);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            try
+            {
+
+                var obj = _unitOfWork.Student.GetAll();
+
+                if (obj == null)
+                {
+                    return new ErrorResult("Student Not Found");
+                }
+
+                return new MyOkResult(obj.Select(x => (StudentResult)x).ToList());
             }
             catch (Exception ex)
             {
