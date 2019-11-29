@@ -154,6 +154,8 @@ namespace PGTData.Controllers
 
                 UserType userType = _unitOfWork.UserType.Get(req.UserTypeID);
 
+                Group group = _unitOfWork.Group.Get(req.GroupID);
+
                 User user = new User
                 {
                     UserName = req.UserName,
@@ -161,10 +163,12 @@ namespace PGTData.Controllers
                     UserEmail = req.UserEmail,
                     UserPassword = req.UserPassword,
                     UserTypeID = req.UserTypeID,
-                    CampusID = req.CampusID
+                    CampusID = req.CampusID,
+                    GroupID = req.GroupID
                 };
 
                 user.UserType = userType;
+                user.Group = group;
 
                 _unitOfWork.User.Add(user);
                 await _unitOfWork.Complete();
