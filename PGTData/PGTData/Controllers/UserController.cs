@@ -23,12 +23,33 @@ namespace PGTData.Controllers
             _unitOfWork = (UnitOfWork)unitOfWork;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("{id}")]
+        public IActionResult Get(int UserID)
         {
             try
             {
-                
+
+                var obj = _unitOfWork.User.Get(UserID);
+
+                if (obj == null)
+                {
+                    return new ErrorResult("User Not Found");
+                }
+
+                return new MyOkResult((UserResult)obj);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            try
+            {
+
                 var obj = _unitOfWork.User.GetAll();
 
                 if (obj == null)
