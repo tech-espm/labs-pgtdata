@@ -53,18 +53,6 @@ namespace PGTData.Controllers
                     return new ErrorResult();
                 }
 
-                List<Student> students = new List<Student>();
-                foreach (var student in req.Students)
-                {
-                    students.Add(_unitOfWork.Student.Get(student.StudentID));
-                }
-
-                List<User> users = new List<User>();
-                foreach (var user in req.Users)
-                {
-                    users.Add(_unitOfWork.User.Get(user.UserID));
-                }
-
                 Group group = new Group
                 {
                     GroupName = req.GroupName,
@@ -73,22 +61,6 @@ namespace PGTData.Controllers
 
                 _unitOfWork.Group.Add(group);
                 await _unitOfWork.Complete();
-                
-                foreach (var student in students)
-                {
-                    student.GroupID = group.GroupID;
-                    student.Group = group;
-                    _unitOfWork.Student.Add(student);
-                    await _unitOfWork.Complete();
-                }
-
-                foreach (var user in users)
-                {
-                    user.GroupID = group.GroupID;
-                    user.Group = group;
-                    _unitOfWork.User.Update(user);
-                    await _unitOfWork.Complete();
-                }
 
                 return new MyOkResult((GroupResult)group);
 

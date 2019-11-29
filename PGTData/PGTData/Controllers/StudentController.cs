@@ -99,7 +99,8 @@ namespace PGTData.Controllers
                 {
                     StudentName = req.StudentName,
                     StudentRA = req.StudentRA,
-                    CampusID = req.CampusID
+                    CampusID = req.CampusID,
+                    GroupID = req.GroupID
                 };
 
                 _unitOfWork.Student.Add(student);

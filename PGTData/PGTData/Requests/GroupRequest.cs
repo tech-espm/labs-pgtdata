@@ -11,7 +11,5 @@ namespace PGTData.Requests
         public string GroupName { get; set; }
         public string GroupCourse { get; set; }
         public int CampusID { get; set; }
-        public List<Student> Students { get; set; }
-        public List<User> Users { get; set; }
     }
 }
