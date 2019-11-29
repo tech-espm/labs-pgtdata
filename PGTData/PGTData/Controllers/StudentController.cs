@@ -86,7 +86,7 @@ namespace PGTData.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(StudentRequest req)
+        public async Task<IActionResult> Post([FromBody]StudentRequest req)
         {
             try
             {
