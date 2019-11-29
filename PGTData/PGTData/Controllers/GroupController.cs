@@ -22,7 +22,7 @@ namespace PGTData.Controllers
             _unitOfWork = (UnitOfWork)unitOfWork;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(int GroupID)
         {
             try
@@ -36,6 +36,27 @@ namespace PGTData.Controllers
                 }
 
                 return new MyOkResult((GroupResult)obj);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            try
+            {
+
+                var obj = _unitOfWork.Group.GetAll();
+
+                if (obj == null)
+                {
+                    return new ErrorResult("Group Not Found");
+                }
+
+                return new MyOkResult(obj.Select(x => (GroupResult)x).ToList());
             }
             catch (Exception ex)
             {
