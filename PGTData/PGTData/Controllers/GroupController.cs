@@ -65,7 +65,7 @@ namespace PGTData.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(GroupRequest req)
+        public async Task<IActionResult> Post([FromBody]GroupRequest req)
         {
             try
             {
