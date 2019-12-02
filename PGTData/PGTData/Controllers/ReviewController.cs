@@ -116,12 +116,18 @@ namespace PGTData.Controllers
                     ReviewDate = req.ReviewDate
                 };
 
+                _unitOfWork.Review.Add(review);
+
                 foreach (var comment in req.Comments)
                 {
-                    _unitOfWork.Comment.Add(comment);
+                    _unitOfWork.Comment.Add(new Comment
+                    {
+                        CommentDescription = comment,
+                        ReviewID = review.ReviewID,
+                        Review = review
+                    });
                 }
 
-                _unitOfWork.Review.Add(review);
                 await _unitOfWork.Complete();
 
                 return new MyOkResult((ReviewResult)review);

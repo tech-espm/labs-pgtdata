@@ -21,7 +21,7 @@ namespace PGTData.Requests
         
         public int ReviewTypeID { get; set; }
 
-        public List<Comment> Comments { get; set; }
+        public List<string> Comments { get; set; }
 
         public int UserID { get; set; }
     }
